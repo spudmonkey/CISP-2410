@@ -1,17 +1,19 @@
 /********************************
-/ IfDemoSimple
+/ IfDemoCompound
 / Chris Jones
 / 03-18-2014
 /
-/ Description: Emulates the function
+/ Description: Emulates the if/then function
 / of a simple if statement in a higher
-/ level language.
+/ level language. Output 'F' if the first 
+/ input number is equal to or larger than the 
+/ second otherwise output 'S'
 /
-/ NOTE: Output window needs to be set to Dec. 
+/ NOTE: need to set output window to 'ASCII' 
 / *******************************
 
 
-	ORG 100			/ IfDemoSimple
+	ORG 100			/ IfDemoCompound
 	Input			/ Read a value from the keyboard into AC
 	Store		num1	/ put our first number in num1
 	Input			/ Read a value from the keyboard into AC
@@ -19,10 +21,10 @@
 	Subt		num1	/ subtract num1 from num 2
 	Skipcond	800	/ if num2 was larger skip next line
 	jump		num1gt	/ jump to the label num1gt (number 1 greater than num2
-	Load		num2	/ num2 is greater than or equal to num1 so load into AC
+	Load		asciiS	/ num2 is greater than or equal to num1 so load 'S' AC
 	Output			/ print it out
 	Jump		stop	/ go to end of program
-num1gt, Load		num1	/ load num1 into the AC
+num1gt, Load		asciiF	/ load 'F' into the AC
 	Output			/ print out num 1
 stop, 	Halt			/ end program
 	
@@ -31,3 +33,5 @@ stop, 	Halt			/ end program
 /*******************************************************************
 num1,	Dec	0		/ storage for num1
 num2,	Dec	0		/ storage for num2
+asciiF,	Hex	46		/ Hex value for 'F'
+asciiS,	Hex	53		/ Hex value for 'S'

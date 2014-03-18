@@ -1,0 +1,10 @@
+ -----------------
+ Symbol | Location
+ -------+---------
+ asciiF |   10F
+ asciiS |   110
+ num1   |   10D
+ num1gt |   10A
+ num2   |   10E
+ stop   |   10C
+

@@ -1,19 +1,22 @@
-     Assembly listing for: IfDemoSimple.mas
-                Assembled: Tue Mar 18 08:41:19 CDT 2014
+     Assembly listing for: IfDemoCompound.mas
+                Assembled: Tue Mar 18 08:38:36 CDT 2014
 
          |                          /********************************
-         |                          / IfDemoSimple
+         |                          / IfDemoCompound
          |                          / Chris Jones
          |                          / 03-18-2014
          |                          /
-         |                          / Description: Emulates the function
+         |                          / Description: Emulates the if/then function
          |                          / of a simple if statement in a higher
-         |                          / level language.
-         |                          / 
+         |                          / level language. Output 'F' if the first 
+         |                          / input number is larger than the second 
+         |                          / otherwise output 'S'
+         |                          /
+         |                          / NOTE: need to set output window to 'ASCII' 
          |                          / *******************************
          |                          
          |                          
-         |         ORG 100          / IfDemoSimple
+         |         ORG 100          / IfDemoCompound
 100 5000 |         INPUT            / Read a value from the keyboard into AC
 101 210D |         STORE num1       / put our first number in num1
 102 5000 |         INPUT            / Read a value from the keyboard into AC
@@ -21,10 +24,10 @@
 104 410D |         SUBT num1        / subtract num1 from num 2
 105 8800 |         SKIPCOND 800     / if num2 was larger skip next line
 106 910A |         JUMP num1gt      / jump to the label num1gt (number 1 greater than num2
-107 110E |         LOAD num2        / num2 is greater than or equal to num1 so load into AC
+107 1110 |         LOAD asciiS      / num2 is greater than or equal to num1 so load 'S' AC
 108 6000 |         OUTPUT           / print it out
 109 910C |         JUMP stop        / go to end of program
-10A 110D |  num1gt LOAD num1        / load num1 into the AC
+10A 110F |  num1gt LOAD asciiF      / load 'F' into the AC
 10B 6000 |         OUTPUT           / print out num 1
 10C 7000 |  stop   HALT             / end program
          |                          	
@@ -33,6 +36,8 @@
          |                          /*******************************************************************
 10D 0000 |  num1   DEC 0            / storage for num1
 10E 0000 |  num2   DEC 0            / storage for num2
+10F 0046 |  asciiF HEX 46           / Hex value for 'F'
+110 0053 |  asciiS HEX 53           / Hex value for 'S'
 
 Assembly successful.
 
@@ -40,9 +45,11 @@ Assembly successful.
          --------------------------------------------------
           Symbol | Defined | References 
          --------+---------+-------------------------------
-          num1   |   10D   | 101, 104, 10A
+          asciiF |   10F   | 10A
+          asciiS |   110   | 107
+          num1   |   10D   | 101, 104
           num1gt |   10A   | 106
-          num2   |   10E   | 103, 107
+          num2   |   10E   | 103
           stop   |   10C   | 109
          --------------------------------------------------
 
