@@ -12,45 +12,21 @@
 
 	ORG 100			/ IfDemoSimple
 	Input			/ Read a value from the keyboard into AC
-	Output			/ output that value in the AC to the screen
-	Load		Test	/ grab the value of Test and put in AC register
-	Output			/ output the value of test to the screen
-	Skipcond	800	/ if AC > 0 skip
-	jump	stop		/ Go to the label stop
-	Load	test
-stop, 	Halt			/ end the program
-
+	Store		num1	/ put our first number in num1
+	Input			/ Read a value from the keyboard into AC
+	Store		num2	/ put our first number in num2 also still in AC
+	Subt		num1	/ subtract num1 from num 2
+	Skipcond	800	/ if num2 was larger skip next line
+	jump		num1gt	/ jump to the label num1gt (number 1 greater than num2
+	Load		num2	/ num2 is greater than or equal to num1 so load into AC
+	Output			/ print it out
+	Jump		stop	/ go to end of program
+num1gt, Load		num1	/ load num1 into the AC
+	Output			/ print out num 1
+stop, 	Halt			/ end program
+	
 / ******************************************************************
 / Variables
 /*******************************************************************
-Test,	Dec	45	/ Just a random number that we will output
-
-/	Load	 Addr	/Load address of first number to be added	
-/	Store	 Next	/Store this address is our Next pointer		
-/	Load 	 Num	/Load the number of items to be added		
-/	Subt	 One	/Decrement 		
-/	Store	 Ctr	/Store this value in Ctr to control looping		
-/Loop,	Load 	 Sum	/Load the Sum into AC		
-/	AddI	 Next	/Add the value pointed to by location Next		
-/	Store	 Sum	/Store this sum		
-	
-	
-/	Skipcond 000	/If control variable < 0, skip next instruction
-
-/	Skipcond 800	/If control variable > 0, skip next instruction
-
-/	Skipcond 400	/If control variable = 0, skip next instruction
-
-		
-/	Jump	 Loop	/Otherwise, go to Loop		
-/	Halt		/Terminate program		
-	
-/Num,	Dec	 5	/The number of values to add 		
-/Sum,	Dec	 0	/The sum		
-/Ctr,	Hex	 0	/The loop control variable		
-/One,	Dec	 1	/Used to increment and decrement by 1		
-/	Dec	 10	/The values to be added together		
-/	Dec	 15
-/	Dec	 20
-/	Dec	 25
-/	Dec	 30		
+num1,	Dec	0		/ storage for num1
+num2,	Dec	0		/ storage for num2
