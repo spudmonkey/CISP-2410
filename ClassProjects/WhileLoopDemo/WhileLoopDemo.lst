@@ -1,0 +1,51 @@
+     Assembly listing for: WhileLoopDemo.mas
+                Assembled: Tue Mar 18 09:10:13 CDT 2014
+
+         |                          /********************************
+         |                          / DoWhileLoopDemo
+         |                          / Chris Jones
+         |                          / 03-18-2014
+         |                          /
+         |                          / Description: Emulates the While
+         |                          / statement in a higher
+         |                          / level language. 
+         |                          / 
+         |                          / Reads in a loop control value from stdin
+         |                          / decrements it each time through the loop
+         |                          / outputs the value each time through the loop
+         |                          /
+         |                          / NOTE: need to set output window to 'DEC' 
+         |                          / *******************************
+         |                          
+         |                          
+         |         ORG 100          / DoWhileLoopDemo
+100 5000 |         INPUT            / Read a value from the keyboard into AC
+101 210A |         STORE LCV        / put our loop control value in LCV
+102 110A |  loop   LOAD LCV         / Load the LCV
+103 8800 |         SKIPCOND 800     / if LCV is greater than zero keep going
+104 9109 |         JUMP stop        / LCV zero or less we are done
+105 6000 |         OUTPUT           / print our LCV -- we would go do our stuff here if this were a real loop
+106 410B |         SUBT step        / subtract 1
+107 210A |         STORE LCV        / store new LCV value
+108 9102 |         JUMP loop        / go back through
+109 7000 |  stop   HALT             / end program
+         |                          	
+         |                          / ******************************************************************
+         |                          / Variables
+         |                          /*******************************************************************
+10A 0000 |  LCV    DEC 0            / storage for Loop Control value
+10B 0001 |  step   DEC 1            / step size for the loop (could be useful to be able to change it)
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          LCV    |   10A   | 101, 102, 107
+          loop   |   102   | 108
+          step   |   10B   | 106
+          stop   |   109   | 104
+         --------------------------------------------------
+
+
