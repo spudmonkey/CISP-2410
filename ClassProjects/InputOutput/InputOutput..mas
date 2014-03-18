@@ -1,0 +1,14 @@
+/********************************
+/ Input Output
+/ Chris Jones
+/ 03-18-2014
+/ Description: Takes a character from input
+/   and spits it back out to output
+/ 
+/ *******************************
+
+
+	ORG 100			/ Input output
+	Input			/ Read a value from the keyboard into AC
+	Output			/ output that value in the AC to the screen
+	Halt			/ end the program

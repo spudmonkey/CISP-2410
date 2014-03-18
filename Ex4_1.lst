@@ -1,0 +1,49 @@
+     Assembly listing for: Ex4_1.mas
+                Assembled: Thu Feb 20 12:05:34 CST 2014
+
+         |         ORG 100          / Example 4.1
+100 1111 |         LOAD Addr        /Load address of first number to be added		
+101 2112 |         STORE Next       /Store this address is our Next pointer		
+102 1113 |         LOAD Num         /Load the number of items to be added		
+103 4116 |         SUBT One         /Decrement 		
+104 2115 |         STORE Ctr        /Store this value in Ctr to control looping		
+105 1114 |  Loop   LOAD Sum         /Load the Sum into AC		
+106 B112 |         ADDI Next        /Add the value pointed to by location Next		
+107 2114 |         STORE Sum        /Store this sum		
+108 1112 |         LOAD Next        /Load Next		
+109 3116 |         ADD One          /Increment by one to point to next address		
+10A 2112 |         STORE Next       /Store in our pointer Next		
+10B 1115 |         LOAD Ctr         /Load the loop control variable		
+10C 4116 |         SUBT One         /Subtract one from the loop control variable		
+10D 2115 |         STORE Ctr        /Store this new value in loop control variable		
+10E 8000 |         SKIPCOND 000     /If control variable < 0, skip next instruction		
+10F 9105 |         JUMP Loop        /Otherwise, go to Loop		
+110 7000 |         HALT             /Terminate program		
+111 0117 |  Addr   HEX 117          /Numbers to be summed start at location 118		
+112 0000 |  Next   HEX 0            /A pointer to the next number to add		
+113 0005 |  Num    DEC 5            /The number of values to add 		
+114 0000 |  Sum    DEC 0            /The sum		
+115 0000 |  Ctr    HEX 0            /The loop control variable		
+116 0001 |  One    DEC 1            /Used to increment and decrement by 1		
+117 000A |         DEC 10           /The values to be added together		
+118 000F |         DEC 15            
+119 0014 |         DEC 20            
+11A 0019 |         DEC 25            
+11B 001E |         DEC 30            
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          Addr   |   111   | 100
+          Ctr    |   115   | 104, 10B, 10D
+          Loop   |   105   | 10F
+          Next   |   112   | 101, 106, 108, 10A
+          Num    |   113   | 102
+          One    |   116   | 103, 109, 10C
+          Sum    |   114   | 105, 107
+         --------------------------------------------------
+
+

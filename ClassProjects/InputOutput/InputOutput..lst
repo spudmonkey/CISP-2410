@@ -1,0 +1,27 @@
+     Assembly listing for: InputOutput..mas
+                Assembled: Mon Mar 17 19:13:22 CDT 2014
+
+         |                          /********************************
+         |                          / Input Output
+         |                          / Chris Jones
+         |                          / 03-18-2014
+         |                          / Description: Takes a character from input
+         |                          /   and spits it back out to output
+         |                          / 
+         |                          / *******************************
+         |                          
+         |                          
+         |         ORG 100          / Input output
+100 5000 |         INPUT            / Read a value from the keyboard into AC
+101 6000 |         OUTPUT           / output that value in the AC to the screen
+102 7000 |         HALT             / end the program
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+         --------------------------------------------------
+
+
