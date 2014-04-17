@@ -1,0 +1,50 @@
+     Assembly listing for: FuncCall.mas
+                Assembled: Tue Apr 15 09:07:40 CDT 2014
+
+         |                          /********************************
+         |                          / Program Name:		Function call
+         |                          / Due: 			2014-04-07
+         |                          / Description:		"function" asks for a number an prints it out
+         |                          /			we will loop to call the function twice
+         |                          / *******************************
+         |                          
+         |                          
+         |                          
+         |         ORG 100           
+100 1110 |  Loop   LOAD Count       / load our remaining number of function calls
+101 8800 |         SKIPCOND 800     / if we are still > 0 skip  the next line
+102 9107 |         JUMP End         / Jump to the end
+103 5000 |         INPUT            / get our number
+104 210F |         STORE Ournum     / Store it so we can get it in the function	
+105 0108 |         JNS Func         / Jump to our 'function
+106 9100 |         JUMP Loop        / Go back to the top of the loop
+         |                          
+107 7000 |  End    HALT             / all done
+         |                          
+108 0000 |  Func   HEX 0            / holds out program counter
+109 110F |         LOAD Ournum      / Load the number
+10A 6000 |         OUTPUT           / Print it out
+10B 1110 |         LOAD Count       / load out loop count
+10C 4111 |         SUBT One         / decrement it
+10D 2110 |         STORE Count      / Save the new value
+10E C108 |         JUMPI Func       / Head back to the top
+         |                          
+10F 0000 |  Ournum DEC 0             
+110 0002 |  Count  DEC 2            / Max number of times to call function
+111 0001 |  One    DEC 1            / Used to increment and decrement by 1	
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          Count  |   110   | 100, 10B, 10D
+          End    |   107   | 102
+          Func   |   108   | 105, 10E
+          Loop   |   100   | 106
+          One    |   111   | 10C
+          Ournum |   10F   | 104, 109
+         --------------------------------------------------
+
+

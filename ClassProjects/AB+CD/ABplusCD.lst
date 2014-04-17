@@ -1,0 +1,86 @@
+     Assembly listing for: ABplusCD.mas
+                Assembled: Thu Apr 17 08:20:17 CDT 2014
+
+         |                          /********************************
+         |                          / Program Name: 	AB+CD
+         |                          / Due: 			2014-04-07
+         |                          / Description:		multiplies two pairs of numbers and
+         |                          /			the sums the results. 
+         |                          /
+         |                          / *******************************
+         |                          
+         |                          
+         |                          
+000 A000 |         CLEAR             
+001 202B |         STORE Prod1      / zero out product in case we want to run multiple times
+002 202C |         STORE Prod2      / zero out product in case we want to run multiple times
+003 5000 |         INPUT            / First factor "A"
+004 2028 |         STORE Fact1      / Store our first factor
+005 6000 |         OUTPUT           / print it out
+006 5000 |         INPUT            / Second factor "B"
+007 2029 |         STORE Fact2      / Store it
+008 6000 |         OUTPUT           / print it out
+009 001A |         JNS Mult         / jump to the multiply routine
+00A 102A |         LOAD Prod        / grab the working product
+00B 202B |         STORE Prod1      / put it in product 1
+00C 6000 |         OUTPUT           / output the value so we can make sure we are on the right track
+00D 5000 |         INPUT            / First factor "C"
+00E 2028 |         STORE Fact1      / Store our first factor
+00F 6000 |         OUTPUT           / print it out
+010 5000 |         INPUT            / Second factor "D"
+011 2029 |         STORE Fact2      / store it
+012 6000 |         OUTPUT           / print it out
+013 001A |         JNS Mult         / jump to the multiply routine
+014 102A |         LOAD Prod        / grab the working product
+015 202C |         STORE Prod2      / put it in product 1
+016 6000 |         OUTPUT           / output the second product so we can see if it is right
+017 302B |         ADD Prod1        / add the first product to our second (hurrah for commutative property!
+018 6000 |         OUTPUT           / print it out
+019 7000 |  End    HALT             / all done
+         |                          
+         |                          
+         |                          
+01A 0000 |  Mult   HEX 0            / label for multiply and storage location for PC
+01B A000 |         CLEAR             
+01C 202A |         STORE Prod        
+01D 1029 |         LOAD Fact2       / Load our second factor
+01E 202D |         STORE LCV        / put it in the loop control variable
+01F 102A |  Loop   LOAD Prod        / Top of loop, load whatever the current value of product it
+020 3028 |         ADD Fact1        / add factor 1 to it
+021 202A |         STORE Prod       / then store it
+022 102D |         LOAD LCV         / get the LCV
+023 402E |         SUBT One         / decrement the loop control
+024 202D |         STORE LCV        / store it for next time
+025 8800 |         SKIPCOND 800     / Is the LCV zero? If so we are done.
+026 C01A |         JUMPI Mult       / return	
+027 901F |         JUMP Loop        / if not run through the loop again	
+         |                          
+         |                          
+028 0000 |  Fact1  DEC 0            / Factor one
+029 0000 |  Fact2  DEC 0            / Factor two
+02A 0000 |  Prod   DEC 0            / Working product
+02B 0000 |  Prod1  DEC 0            / The Product of A*B
+02C 0000 |  Prod2  DEC 0            / The Product of C*D
+02D 0000 |  LCV    DEC 0            / The loop control variable		
+02E 0001 |  One    DEC 1            / Used to increment and decrement by 1	
+         |                          	
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          End    |   019   | 
+          Fact1  |   028   | 004, 00E, 020
+          Fact2  |   029   | 007, 011, 01D
+          LCV    |   02D   | 01E, 022, 024
+          Loop   |   01F   | 027
+          Mult   |   01A   | 009, 013, 026
+          One    |   02E   | 023
+          Prod   |   02A   | 00A, 014, 01C, 01F, 021
+          Prod1  |   02B   | 001, 00B, 017
+          Prod2  |   02C   | 002, 015
+         --------------------------------------------------
+
+

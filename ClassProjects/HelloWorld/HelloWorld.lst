@@ -1,0 +1,58 @@
+     Assembly listing for: HelloWorld.mas
+                Assembled: Tue Apr 15 12:14:31 CDT 2014
+
+000 A000 |            CLEAR                
+001 2011 |            STORE INDEX          
+002 1013 |  WHILE     LOAD STR_BASE        
+003 3011 |            ADD INDEX            
+004 2012 |            STORE ADDR           
+005 A000 |            CLEAR                
+006 B012 |            ADDI ADDR            
+007 8400 |            SKIPCOND 400         
+008 900A |            JUMP DO              
+009 900F |            JUMP END_WHILE       
+00A 6000 |  DO        OUTPUT               
+00B 1011 |            LOAD INDEX           
+00C 3010 |            ADD ONE              
+00D 2011 |            STORE INDEX          
+00E 9002 |            JUMP WHILE           
+00F 7000 |  END_WHILE HALT                 
+010 0001 |  ONE       DEC 1                
+011 0000 |  INDEX     DEC 0                
+012 0000 |  ADDR      HEX 0                
+013 0014 |  STR_BASE  HEX 14               
+014 0048 |  STR       DEC 72               
+015 0045 |            DEC 69               
+016 004C |            DEC 76               
+017 004C |            DEC 76               
+018 004F |            DEC 79               
+019 000D |            DEC 13               
+01A 0057 |            DEC 87               
+01B 004F |            DEC 79               
+01C 0052 |            DEC 82               
+01D 004C |            DEC 76               
+01E 0044 |            DEC 68               
+01F 0000 |  NULL      DEC 0                
+         |                                
+         |                                
+         |                                
+         |                                
+
+Assembly successful.
+
+         SYMBOL TABLE
+         -----------------------------------------------------
+          Symbol    | Defined | References 
+         -----------+---------+-------------------------------
+          ADDR      |   012   | 004, 006
+          DO        |   00A   | 008
+          END_WHILE |   00F   | 009
+          INDEX     |   011   | 001, 003, 00B, 00D
+          NULL      |   01F   | 
+          ONE       |   010   | 00C
+          STR       |   014   | 
+          STR_BASE  |   013   | 002
+          WHILE     |   002   | 00E
+         -----------------------------------------------------
+
+

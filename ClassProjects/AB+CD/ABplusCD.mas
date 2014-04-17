@@ -1,0 +1,63 @@
+/********************************
+/ Program Name: 	AB+CD
+/ Due: 			2014-04-07
+/ Description:		multiplies two pairs of numbers and
+/			the sums the results. 
+/
+/ *******************************
+
+
+
+	Clear
+	Store	Prod1	/ zero out product in case we want to run multiple times
+	Store	Prod2	/ zero out product in case we want to run multiple times
+	Input		/ First factor "A"
+	Store	Fact1	/ Store our first factor
+	Output		/ print it out
+	Input		/ Second factor "B"
+	Store	Fact2	/ Store it
+	Output		/ print it out
+	JNS	Mult	/ jump to the multiply routine
+	Load 	Prod	/ grab the working product
+	Store	Prod1	/ put it in product 1
+	Output 		/ output the value so we can make sure we are on the right track
+	Input		/ First factor "C"
+	Store	Fact1	/ Store our first factor
+	Output		/ print it out
+	Input		/ Second factor "D"
+	Store	Fact2	/ store it
+	Output		/ print it out
+	JNS	Mult	/ jump to the multiply routine
+	Load 	Prod	/ grab the working product
+	Store	Prod2	/ put it in product 1
+	Output		/ output the second product so we can see if it is right
+	Add	Prod1	/ add the first product to our second (hurrah for commutative property!
+	Output		/ print it out
+End,	Halt		/ all done
+
+
+
+Mult,	Hex	0	/ label for multiply and storage location for PC
+	Clear
+	Store 	Prod
+	Load	Fact2	/ Load our second factor
+	Store	LCV	/ put it in the loop control variable
+Loop,	Load	Prod	/ Top of loop, load whatever the current value of product it
+	Add	Fact1	/ add factor 1 to it
+	Store 	Prod	/ then store it
+	Load	LCV	/ get the LCV
+	Subt	One	/ decrement the loop control
+	Store	LCV	/ store it for next time
+	Skipcond 800	/ Is the LCV zero? If so we are done.
+	JumpI	Mult	/ return	
+	Jump Loop	/ if not run through the loop again	
+
+
+Fact1,	Dec	0	/ Factor one
+Fact2,	Dec	0	/ Factor two
+Prod,	Dec	0	/ Working product
+Prod1,	Dec	0	/ The Product of A*B
+Prod2, 	Dec	0	/ The Product of C*D
+LCV,	Dec	0	/ The loop control variable		
+One,	Dec	1	/ Used to increment and decrement by 1	
+	

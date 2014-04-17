@@ -1,0 +1,15 @@
+ -------------------
+ Symbol   | Location
+ ---------+---------
+ DoResult |   012
+ End      |   016
+ Loop     |   006
+ ONE      |   017
+ ProcVal  |   00A
+ avg      |   01D
+ inCount  |   019
+ inNum    |   018
+ max      |   01B
+ min      |   01C
+ total    |   01A
+

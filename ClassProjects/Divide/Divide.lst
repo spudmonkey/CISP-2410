@@ -1,0 +1,72 @@
+     Assembly listing for: Divide.mas
+                Assembled: Tue Apr 08 08:43:48 CDT 2014
+
+         |                          /********************************
+         |                          / Program Name: 	Division with remainder
+         |                          / Due: 			2014-04-07
+         |                          / Description:		divides two numbers
+         |                          / *******************************
+         |                          
+         |                          
+         |                          
+         |         ORG 100           
+100 A000 |         CLEAR             
+101 2123 |         STORE Quot       / zero out quotient in case we want to run multiple times
+102 5000 |         INPUT             
+103 2121 |         STORE Divid      / Store our dividend
+104 2120 |         STORE Temp       / store the dividend value in temp
+105 6000 |         OUTPUT           / print it out
+106 5000 |         INPUT             
+107 2122 |         STORE Divis      / Store our divisor
+108 6000 |         OUTPUT           / print it out
+109 1120 |  Loop   LOAD Temp        / load the value of the working dividend
+10A 4122 |         SUBT Divis       / subtract the divisor
+10B 2120 |         STORE Temp       / store our new value for our working dividend
+10C 8800 |         SKIPCOND 800     / if temp is still positive skip next
+10D 9112 |         JUMP Out         / go print result
+10E 1123 |         LOAD Quot        / load our quotient
+10F 3125 |         ADD One          / add one to the quotient
+110 2123 |         STORE Quot       / store it again
+111 9109 |         JUMP Loop        / run through the loop again
+112 1120 |  Out    LOAD Temp        / Load our working dividend
+113 8400 |         SKIPCOND 400     / if it is equal to zero skip next line
+114 911A |         JUMP Odd         / Jump to our output for evenly divisible number
+115 9116 |         JUMP Even        / Jump to the print out section
+116 1123 |  Even   LOAD Quot        / We got an evenly divisible number, load quotient
+117 3125 |         ADD One          / Have to add one since we missed one in our loop above
+118 6000 |         OUTPUT           / print it out
+119 911F |         JUMP End         / exit
+11A 1123 |  Odd    LOAD Quot        / load our quotient
+11B 6000 |         OUTPUT           / print it out
+11C 1120 |         LOAD Temp        / load our remainder
+11D 3122 |         ADD Divis        / remainder is negative, add back the divisor to get correct value
+11E 6000 |         OUTPUT           / print it out
+11F 7000 |  End    HALT             / all done
+         |                          
+120 0000 |  Temp   DEC 0            / temp for dividend
+121 0000 |  Divid  DEC 0            / Dividend
+122 0000 |  Divis  DEC 0            / Divisor
+123 0000 |  Quot   DEC 0            / The Quotient
+124 0000 |  LCV    DEC 0            / The loop control variable		
+125 0001 |  One    DEC 1            / Used to increment and decrement by 1	
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          Divid  |   121   | 103
+          Divis  |   122   | 107, 10A, 11D
+          End    |   11F   | 119
+          Even   |   116   | 115
+          LCV    |   124   | 
+          Loop   |   109   | 111
+          Odd    |   11A   | 114
+          One    |   125   | 10F, 117
+          Out    |   112   | 10D
+          Quot   |   123   | 101, 10E, 110, 116, 11A
+          Temp   |   120   | 104, 109, 10B, 112, 11C
+         --------------------------------------------------
+
+

@@ -1,0 +1,102 @@
+     Assembly listing for: DecimalDivide.mas
+                Assembled: Tue Apr 08 09:34:21 CDT 2014
+
+         |                          /********************************
+         |                          / Program Name: 	Division with two decimal places
+         |                          / Due: 			2014-04-07
+         |                          / Description:		divides two numbers
+         |                          / *******************************
+         |                          
+         |                          
+         |                          
+         |         ORG 100           
+100 A000 |         CLEAR             
+101 213C |         STORE Quot       / zero out quotient in case we want to run multiple times
+102 5000 |         INPUT             
+103 213A |         STORE Divid      / Store our dividend
+104 2139 |         STORE Temp       / store the dividend value in temp
+105 6000 |         OUTPUT           / print it out
+106 5000 |         INPUT             
+107 213B |         STORE Divis      / Store our divisor
+108 6000 |         OUTPUT           / print it out
+109 1139 |  Dloop  LOAD Temp        / load the value of the working dividend
+10A 413B |         SUBT Divis       / subtract the divisor
+10B 2139 |         STORE Temp       / store our new value for our working dividend
+10C 8800 |         SKIPCOND 800     / if temp is still positive skip next
+10D 9112 |         JUMP Mout        / go deal with result
+10E 113C |         LOAD Quot        / load our quotient
+10F 313E |         ADD One          / add one to the quotient
+110 213C |         STORE Quot       / store it again
+111 9109 |         JUMP Dloop       / run through the loop again
+112 1139 |  Mout   LOAD Temp        / Load our working dividend
+113 8400 |         SKIPCOND 400     / if it is equal to zero skip next line
+114 9119 |         JUMP Odd         / Jump to our output for evenly divisible number
+115 113C |         LOAD Quot        / We got an evenly divisible number, load quotient
+116 313E |         ADD One          / Have to add one since we missed one in our loop above
+117 6000 |         OUTPUT           / print it out
+118 9135 |         JUMP End         / exit
+119 113C |  Odd    LOAD Quot        / load our quotient
+11A 6000 |         OUTPUT           / print it out
+11B 1139 |         LOAD Temp        / load our remainder
+11C 313B |         ADD Divis        / remainder is negative, add back the divisor to get correct value
+11D 2139 |         STORE Temp       / store the new value back in temp
+11E 1138 |         LOAD Dplace      / load the max decimal places	
+11F 8800 |         SKIPCOND 800     / if the number of decimal places remaining is > 0 skip next
+120 9135 |         JUMP End         / all done
+121 A000 |         CLEAR             
+122 2136 |         STORE Prod       / zero out our product
+123 213C |         STORE Quot       / zero out our quotient
+124 1137 |         LOAD Ten         / we will multiply by this
+125 213D |         STORE LCV        / Store our second factor as the LCV
+126 1136 |  Mloop  LOAD Prod        / Top of loop, load whatever the current value of product it
+127 3139 |         ADD Temp         / add our remainder to the product
+128 2136 |         STORE Prod       / then store it
+129 113D |         LOAD LCV         / get the LCV
+12A 413E |         SUBT One         / decrement the loop control
+12B 213D |         STORE LCV        / store it for next time
+12C 8800 |         SKIPCOND 800     / Have we gottne the LCV down to zero?
+12D 912F |         JUMP UpDec       / if so go deal with the decimal place count
+12E 9126 |         JUMP Mloop       / if not run through multiply loop
+12F 1138 |  UpDec  LOAD Dplace      / Load our number of remaining decimal places
+130 413E |         SUBT One         / Decrement
+131 2138 |         STORE Dplace     / save it
+132 1136 |         LOAD Prod         
+133 2139 |         STORE Temp        
+134 9109 |         JUMP Dloop       / go divide 
+135 7000 |  End    HALT             / all done
+         |                          
+136 0000 |  Prod   DEC 0            / our product from the mulitiplication
+137 000A |  Ten    DEC 10            
+138 0002 |  Dplace DEC 2            / Max number of decimal places
+139 0000 |  Temp   DEC 0            / temp for dividend
+13A 0000 |  Divid  DEC 0            / Dividend
+13B 0000 |  Divis  DEC 0            / Divisor
+13C 0000 |  Quot   DEC 0            / The Quotient
+13D 0000 |  LCV    DEC 0            / The loop control variable		
+13E 0001 |  One    DEC 1            / Used to increment and decrement by 1	
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          Divid  |   13A   | 103
+          Divis  |   13B   | 107, 10A, 11C
+          Dloop  |   109   | 111, 134
+          Dplace |   138   | 11E, 12F, 131
+          End    |   135   | 118, 120
+          LCV    |   13D   | 125, 129, 12B
+          Mloop  |   126   | 12E
+          Mout   |   112   | 10D
+          Odd    |   119   | 114
+          One    |   13E   | 10F, 116, 12A, 130
+          Prod   |   136   | 122, 126, 128, 132
+          Quot   |   13C   | 101, 10E, 110, 115, 119, 123
+          Temp   |   139   | 104, 109, 10B, 112, 11B, 11D, 
+                 |         | 127, 133
+          Ten    |   137   | 124
+          UpDec  |   12F   | 12D
+         --------------------------------------------------
+
+

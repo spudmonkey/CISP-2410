@@ -1,0 +1,19 @@
+ -----------------
+ Symbol | Location
+ -------+---------
+ Divid  |   13A
+ Divis  |   13B
+ Dloop  |   109
+ Dplace |   138
+ End    |   135
+ LCV    |   13D
+ Mloop  |   126
+ Mout   |   112
+ Odd    |   119
+ One    |   13E
+ Prod   |   136
+ Quot   |   13C
+ Temp   |   139
+ Ten    |   137
+ UpDec  |   12F
+

@@ -1,0 +1,57 @@
+     Assembly listing for: MaxMinAvg.mas
+                Assembled: Tue Apr 15 15:18:11 CDT 2014
+
+000 A000 |           CLEAR               
+001 2019 |           STORE inCount      / zero out tne count
+002 201A |           STORE total        / zero out the total
+003 201B |           STORE max          / zero out our max number
+004 201C |           STORE min          / zero out our minimum number
+005 201D |           STORE avg          / zero out our average
+006 5000 |  Loop     INPUT              / get a number
+007 8400 |           SKIPCOND 400       / if we get a zero
+008 900A |           JUMP ProcVal       / go process the value
+009 9012 |           JUMP DoResult       
+00A 2018 |  ProcVal  STORE inNum        / store it for later
+00B 101A |           LOAD total         / get our current total
+00C 3018 |           ADD inNum          / add the new number to the total
+00D 201A |           STORE total         
+00E 1019 |           LOAD inCount       / load our count so we can update it
+00F 3017 |           ADD ONE            / increment
+010 2019 |           STORE inCount       
+011 9006 |           JUMP Loop           
+         |                              
+012 101A |  DoResult LOAD total          
+013 6000 |           OUTPUT              
+014 1019 |           LOAD inCount        
+015 6000 |           OUTPUT              
+016 7000 |  End      HALT                
+         |                              
+         |                              
+017 0001 |  ONE      DEC 1               
+018 0000 |  inNum    DEC 0               
+019 0000 |  inCount  DEC 0               
+01A 0000 |  total    DEC 0               
+01B 0000 |  max      DEC 0               
+01C 0000 |  min      DEC 0               
+01D 0000 |  avg      DEC 0               
+
+Assembly successful.
+
+         SYMBOL TABLE
+         ----------------------------------------------------
+          Symbol   | Defined | References 
+         ----------+---------+-------------------------------
+          DoResult |   012   | 009
+          End      |   016   | 
+          Loop     |   006   | 011
+          ONE      |   017   | 00F
+          ProcVal  |   00A   | 008
+          avg      |   01D   | 005
+          inCount  |   019   | 001, 00E, 010, 014
+          inNum    |   018   | 00A, 00C
+          max      |   01B   | 003
+          min      |   01C   | 004
+          total    |   01A   | 002, 00B, 00D, 012
+         ----------------------------------------------------
+
+

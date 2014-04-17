@@ -1,0 +1,52 @@
+	Clear
+	STORE 	inCount	/ zero out tne count
+	STORE	total	/ zero out the total
+	STORE	max	/ zero out our max number
+	STORE	min	/ zero out our minimum number
+	STORE	avg 	/ zero out our average
+Loop,	INPUT		/ get a number
+	SKIPCOND 400	/ if we get a zero
+	JUMP 	ProcVal	/ go process the value
+	JUMP	DoResult
+ProcVal, STORE 	inNum	/ store it for later
+	LOAD	total	/ get our current total
+	ADD	inNum	/ add the new number to the total
+	STORE	total
+	LOAD	inCount	/ load our count so we can update it
+	ADD	ONE	/ increment
+	STORE	inCount
+	JNS	DoMax	/ go figure out if this is a new max number
+	JUMP 	Loop
+
+DoResult, LOAD total
+	OUTPUT
+	LOAD inCount
+	OUTPUT
+End,	HALT
+
+
+DoMax,	 Hex	0
+	LOAD	inNum	/ load our incomingg number
+	SUBT	max	/ subtract the current max
+	SKIPCOND 800	/ If the incoming is larger, skip the next line
+	JUMPI	DoMax	/ return to main prograqm flow
+	Load 	inNum	/ reload our incoming number
+	STORE	max	/ make it the new max value
+	JUMPI	DoMax	/ return to main program flow
+
+DoMin,	 Hex	0
+	LOAD	inNum	/ load our incomingg number
+	SUBT	max	/ subtract the current max
+	SKIPCOND 800	/ If the incoming is larger, skip the next line
+	JUMPI	DoMax	/ return to main prograqm flow
+	Load 	inNum	/ reload our incoming number
+	STORE	max	/ make it the new max value
+	JUMPI	DoMax	/ return to main program flow
+
+ONE,	 Dec	1
+inNum, 	 DEC	0
+inCount, Dec	0
+total,	 Dec	0
+max,	 Dec	0
+min,	 Dec 	0
+avg,	 Dec	0

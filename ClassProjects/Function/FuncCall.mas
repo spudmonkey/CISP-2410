@@ -1,0 +1,31 @@
+/********************************
+/ Program Name:		Function call
+/ Due: 			2014-04-07
+/ Description:		"function" asks for a number an prints it out
+/			we will loop to call the function twice
+/ *******************************
+
+
+
+	ORG 	100
+Loop,	Load	Count	/ load our remaining number of function calls
+	Skipcond 800	/ if we are still > 0 skip  the next line
+	Jump	End	/ Jump to the end
+	Input		/ get our number
+	Store	Ournum  / Store it so we can get it in the function	
+	Jns 	Func	/ Jump to our 'function
+	Jump	Loop	/ Go back to the top of the loop
+
+End,	Halt		/ all done
+
+Func, 	Hex	0	/ holds out program counter
+	Load	Ournum	/ Load the number
+	Output		/ Print it out
+	Load	Count	/ load out loop count
+	Subt	One	/ decrement it
+	Store 	Count	/ Save the new value
+	JumpI	Func	/ Head back to the top
+
+Ournum, Dec	0
+Count,	Dec	2	/ Max number of times to call function
+One,	Dec	1	/ Used to increment and decrement by 1	

@@ -1,0 +1,34 @@
+/********************************
+/ DoWhileLoopDemo
+/ Chris Jones
+/ 03-18-2014
+/
+/ Description: Emulates the While
+/ statement in a higher
+/ level language. 
+/ 
+/ Reads in a loop control value from stdin
+/ decrements it each time through the loop
+/ outputs the value each time through the loop
+/
+/ NOTE: need to set output window to 'DEC' 
+/ *******************************
+
+
+	ORG 100			/ DoWhileLoopDemo
+	Input			/ Read a value from the keyboard into AC
+	Store		LCV	/ put our loop control value in LCV
+loop, 	Load		LCV	/ Load the LCV
+	Skipcond	800	/ if LCV is greater than zero keep going
+	jump		stop	/ LCV zero or less we are done
+	Output			/ print our LCV -- we would go do our stuff here if this were a real loop
+	Subt		step	/ subtract 1
+	Store		LCV	/ store new LCV value
+	Jump		loop	/ go back through
+stop, 	Halt			/ end program
+	
+/ ******************************************************************
+/ Variables
+/*******************************************************************
+LCV,	Dec	0		/ storage for Loop Control value
+step, 	Dec	1		/ step size for the loop (could be useful to be able to change it)

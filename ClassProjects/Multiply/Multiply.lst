@@ -1,0 +1,57 @@
+     Assembly listing for: Multiply.mas
+                Assembled: Tue Apr 08 08:02:44 CDT 2014
+
+         |                          /********************************
+         |                          / Program Name: 	Multiplication
+         |                          / Due: 			2014-04-07
+         |                          / Description:		multiplies two numbers
+         |                          / *******************************
+         |                          
+         |                          
+         |                          
+         |         ORG 100           
+100 A000 |         CLEAR             
+101 2117 |         STORE Prod       / zero out product in case we want to run multiple times
+102 5000 |         INPUT             
+103 2115 |         STORE Fact1      / Store our first factor
+104 6000 |         OUTPUT           / print it out
+105 5000 |         INPUT             
+106 2118 |         STORE LCV        / Store our second factor as the LCV
+107 6000 |         OUTPUT           / print it out
+108 1117 |  Loop   LOAD Prod        / Top of loop, load whatever the current value of product it
+109 3115 |         ADD Fact1        / add factor 1 to it
+10A 2117 |         STORE Prod       / then strore it
+10B 1118 |         LOAD LCV         / get the LCV
+10C 4119 |         SUBT One         / decrement the loop control
+10D 2118 |         STORE LCV        / store it for next time
+10E 6000 |         OUTPUT            
+10F 8800 |         SKIPCOND 800     / Have we gottne the LCV down to zero?
+110 9112 |         JUMP Out         / if so go to end	
+111 9108 |         JUMP Loop        / if not run through the loop again
+112 1117 |  Out    LOAD Prod        / Load our product
+113 6000 |         OUTPUT           / output the product
+114 7000 |  End    HALT             / all done
+         |                          
+115 0000 |  Fact1  DEC 0            / Factor one
+116 0000 |  Fact2  DEC 0            / Factor two
+117 0000 |  Prod   DEC 0            / The Product
+118 0000 |  LCV    DEC 0            / The loop control variable		
+119 0001 |  One    DEC 1            / Used to increment and decrement by 1	
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          End    |   114   | 
+          Fact1  |   115   | 103, 109
+          Fact2  |   116   | 
+          LCV    |   118   | 106, 10B, 10D
+          Loop   |   108   | 111
+          One    |   119   | 10C
+          Out    |   112   | 110
+          Prod   |   117   | 101, 108, 10A, 112
+         --------------------------------------------------
+
+

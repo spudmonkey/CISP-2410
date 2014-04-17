@@ -1,0 +1,35 @@
+/********************************
+/ Program Name: 	Multiplication
+/ Due: 			2014-04-07
+/ Description:		multiplies two numbers
+/ *******************************
+
+
+
+	ORG 	100
+	Clear
+	Store	Prod	/ zero out product in case we want to run multiple times
+	Input
+	Store	Fact1	/ Store our first factor
+	Output		/ print it out
+	Input
+	Store	LCV	/ Store our second factor as the LCV
+	Output		/ print it out
+Loop,	Load	Prod	/ Top of loop, load whatever the current value of product it
+	Add	Fact1	/ add factor 1 to it
+	Store 	Prod	/ then strore it
+	Load	LCV	/ get the LCV
+	Subt	One	/ decrement the loop control
+	Store	LCV	/ store it for next time
+	Skipcond 800	/ Have we gottne the LCV down to zero?
+	Jump Out	/ if so go to end	
+	Jump Loop	/ if not run through the loop again
+Out,	Load	Prod	/ Load our product
+	Output		/ output the product
+End,	Halt		/ all done
+
+Fact1,	Dec	0	/ Factor one
+Fact2,	Dec	0	/ Factor two
+Prod,	Dec	0	/ The Product
+LCV,	Dec	0	/ The loop control variable		
+One,	Dec	1	/ Used to increment and decrement by 1	

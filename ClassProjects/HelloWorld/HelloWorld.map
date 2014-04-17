@@ -1,0 +1,13 @@
+ --------------------
+ Symbol    | Location
+ ----------+---------
+ ADDR      |   012
+ DO        |   00A
+ END_WHILE |   00F
+ INDEX     |   011
+ NULL      |   01F
+ ONE       |   010
+ STR       |   014
+ STR_BASE  |   013
+ WHILE     |   002
+

@@ -1,0 +1,48 @@
+/********************************
+/ Program Name: 	Division with remainder
+/ Due: 			2014-04-07
+/ Description:		divides two numbers
+/ *******************************
+
+
+
+	ORG 	100
+	Clear
+	Store	Quot	/ zero out quotient in case we want to run multiple times
+	Input
+	Store	Divid	/ Store our dividend
+	Store	Temp	/ store the dividend value in temp
+	Output		/ print it out
+	Input
+	Store	Divis	/ Store our divisor
+	Output		/ print it out
+Loop,	Load 	Temp	/ load the value of the working dividend
+	Subt 	Divis	/ subtract the divisor
+	Store	Temp	/ store our new value for our working dividend
+	Skipcond 800	/ if temp is still positive skip next
+	Jump	Out	/ go print result
+	Load	Quot	/ load our quotient
+	Add	One	/ add one to the quotient
+	Store	Quot	/ store it again
+	Jump 	Loop	/ run through the loop again
+Out,	Load	Temp	/ Load our working dividend
+	Skipcond 400	/ if it is equal to zero skip next line
+	Jump	Odd	/ Jump to our output for evenly divisible number
+	Jump 	Even	/ Jump to the print out section
+Even,	Load	Quot	/ We got an evenly divisible number, load quotient
+	Add	One	/ Have to add one since we missed one in our loop above
+	Output	Quot	/ print it out
+	Jump	End	/ exit
+Odd,	Load 	Quot	/ load our quotient
+	Output	Quot	/ print it out
+	Load 	Temp	/ load our remainder
+	Add 	Divis	/ remainder is negative, add back the divisor to get correct value
+	Output	Temp	/ print it out
+End,	Halt		/ all done
+
+Temp,	Dec	0	/ temp for dividend
+Divid,	Dec	0	/ Dividend
+Divis,	Dec	0	/ Divisor
+Quot,	Dec	0	/ The Quotient
+LCV,	Dec	0	/ The loop control variable		
+One,	Dec	1	/ Used to increment and decrement by 1	
